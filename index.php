@@ -17,10 +17,18 @@
     $length = 25;
     $characterset = $nums . $uppercase . $lowercase . $specialchars;
     $password = generatePassword($length, $characterset);
+    
+    $page = file_get_contents('templates/mainheader.php');
+    $page .= file_get_contents('templates/mainfooter.php');
+  
+    #$password = generatePassword($length, $characterset);
+    $page = sprintf($page, $password, $error);
+  
+    $page = eval("?>$page");
+    echo $page;
   }
+  
   elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    var_dump($_POST);
-
     $length   = isset($_POST['length']) ? intval($_POST['length']) : 25;
 
     $upper    = isset($_POST['upper']) ? $_POST['upper'] : "off";
@@ -54,23 +62,18 @@
       if($numbersState) {
         $characterset .= $nums;
       }
-      var_dump($characterset);
       
       $password = generatePassword($length, $characterset);
+    }
+    if($error !== "") {
+      echo $error;
+    }
+    else {
+      echo $password;
     }
   }
   else {
     http_response_code(404);
     die();
   }
-
-  $page = file_get_contents('templates/header.php');
-  $page .= file_get_contents('templates/footer.php');
-
-  #$password = generatePassword($length, $characterset);
-  $page = sprintf($page, $password, $error);
-
-  $page = eval("?>$page");
-  echo $page;
-
 ?>
