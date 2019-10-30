@@ -23,12 +23,14 @@
         //Set initial state.
         var id = "com.pwgen.";
 
+        //Sets them to start
         $('.form-check-input').each(function(){
           var state_id = id + this.name;
-          this.checked = true;
-          localStorage.setItem(state_id, this.checked);
+          var current_state = localStorage.getItem(state_id);
+          alert(current_state);
         });
         
+        //Run on each change. Bound to a change in state.
         $('.form-check-input').on("change", function(){
           var state_id = id + this.name;
           localStorage.setItem(state_id, this.checked);
