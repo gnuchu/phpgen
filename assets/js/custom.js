@@ -24,18 +24,32 @@ $(function(){
       $inputs.prop("disabled", false);
     })
   });
+  //
+  var id = "com.pwgen.";
+  //Set initial state.
+  setCheckboxes(id);
+
+  $('.form-check-input').on("change", function () {
+    var state_id = id + this.name;
+    var newState = this.checked ? true : false;
+    localStorage.setItem(state_id, newState);
+  });
 });
 
-function setCheckboxes(){
-  var id = "com.pwgen.";
+function setCheckboxes(id){
   //Sets them to start
   $('.form-check-input').each(function () {
     var state_id = id + this.name;
     var current_state = localStorage.getItem(state_id);
   
     if (current_state == null || current_state == "true") {
-      localStorage.setItem(state_id, true);
-      this.checked = true;
+      if(current_state == 'true' && this.checked) {
+
+      }
+      else {
+        localStorage.setItem(state_id, true);
+        this.checked = true;
+      }
     }
     else {
       localStorage.setItem(state_id, false);
@@ -43,16 +57,6 @@ function setCheckboxes(){
     }
   });
 }
-$(function () {
-  var id = "com.pwgen.";
-  //Set initial state.
-  setCheckboxes();
-  //Run on each change. Bound to a change in state.
-  $('.form-check-input').on("change", function () {
-    var state_id = id + this.name;
-    var newState = this.checked ? true : false;
-    localStorage.setItem(state_id, newState);
-  });
-});
+
 
 
