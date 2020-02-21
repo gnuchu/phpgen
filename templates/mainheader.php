@@ -15,14 +15,23 @@
     <!-- Custom styles for this template -->
     <link href="assets/css/scrolling-nav.css" rel="stylesheet">
     <link href="assets/css/custom.css" rel="stylesheet">
+    <!-- Bootstrap core JavaScript -->
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+    <!-- Plugin JavaScript -->
+    <script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom JavaScript for this theme -->
+    <script src="assets/js/scrolling-nav.js"></script>
+    <script src="assets/js/custom.js"></script>
   </head>
 
   <body id="page-top">
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
+        <a class="navbar-brand js-scroll-trigger" href="/">PWGen</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
           aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -45,7 +54,7 @@
 
     <header class="bg-primary text-white">
       <div class="container text-center">
-        <form method='post' action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+        <form id="selection-form" method='post'>
           <div class="form-group">
             <label for="passworddisplay">Generated Password</label>
             <input onclick="select()" value="%s" type="input" class="form-control input-box-center" id="passworddisplay">
